@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TV App</title>
+    <link rel="shortcut icon" href="tv-logo.jpg" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "hls.js": "https://cdn.jsdelivr.net/npm/hls.js@1.5.6/dist/hls.mjs"
+    }
+  }
+  </script>
+</head>
+<body>
+  <main id="app">
+    <video id="player" playsinline webkit-playsinline controls=""></video>
+
+    <div id="ui">
+      <div class="topbar">
+        <button id="btn-fullscreen" aria-label="Tela cheia">Tela cheia</button>
+        <div class="spacer"></div>
+        <div id="clock" aria-hidden="true"></div>
+      </div>
+
+      <div class="bottom-controls">
+        <button id="prev" aria-label="Canal anterior">◀ Canal</button>
+        <button id="next" aria-label="Próximo canal">Canal ▶</button>
+        <button id="toggle-list" aria-label="Lista de canais">Lista</button>
+      </div>
+    </div>
+
+    <div id="channel-overlay" role="dialog" aria-modal="false" aria-label="Lista de canais">
+      <div class="overlay-header">
+        <strong>Canais</strong>
+        <button id="close-overlay" aria-label="Fechar">Fechar</button>
+      </div>
+      <ul id="channel-list"></ul>
+    </div>
+
+    <div id="toast" aria-live="polite"></div>
+  </main>
+
+  <script type="module" src="./channels.js"></script>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
+

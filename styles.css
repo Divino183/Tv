@@ -1,0 +1,169 @@
+:root {
+  --bg: #000;
+  --fg: #fff;
+  --muted: #9aa0a6;
+  --accent: #fff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Noto Sans", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+#app {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+}
+
+#player {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
+
+#ui {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+#ui button {
+  pointer-events: auto;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--fg);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 8px 12px;
+  border-radius: 8px;
+  backdrop-filter: blur(6px);
+  transition: transform .12s ease, opacity .2s ease;
+}
+
+#ui button:hover {
+  transform: translateY(-1px);
+}
+
+.topbar {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar .spacer {
+  flex: 1;
+}
+
+#clock {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.bottom-controls {
+  position: absolute;
+  left: 50%;
+  bottom: 36px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 2;
+}
+
+#channel-overlay {
+  position: absolute;
+  right: 16px;
+  top: 64px;
+  width: min(360px, 90vw);
+  max-height: 70vh;
+  overflow: auto;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(10, 32, 88, 0.18);
+  border-radius: 12px;
+  backdrop-filter: blur(8px);
+  display: none;
+}
+
+#channel-overlay.open {
+  display: block;
+}
+
+.overlay-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 12px 8px;
+}
+
+#channel-list {
+  list-style: none;
+  margin: 0;
+  padding: 8px;
+}
+
+#channel-list li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background .1s ease;
+}
+
+#channel-list li:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+#channel-list .name {
+  font-weight: 600;
+}
+
+#channel-list .meta {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+#toast {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: var(--fg);
+  padding: 12px 16px;
+  border-radius: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease;
+}
+
+#toast.show {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .bottom-controls {
+    bottom: 12px;
+  }
+  
+  .topbar {
+    top: 12px;
+  }
+}
